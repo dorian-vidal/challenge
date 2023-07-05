@@ -6,7 +6,7 @@
         class="
           center-content
           card__section
-          max-w-sm
+          max-w-xl
           p-6
           bg-white
           border border-gray-200
@@ -15,7 +15,7 @@
           dark:bg-gray-800 dark:border-gray-700
         "
       >
-        <h1 class="text-2xl font-bold text-white">Connexion</h1>
+        <h1 class="text-2xl font-bold text-white">Consignes</h1>
         <p class="text-white">Bienvenue sur le challenge unix shell</p>
         <br />
         <p class="text-white">

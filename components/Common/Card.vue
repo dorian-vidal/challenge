@@ -20,7 +20,6 @@
           tracking-tight
           text-white
           border-b-2 border-neutral-100
-          px-6
           py-3
           dark:border-neutral-600 dark:text-neutral-50
         "
@@ -33,7 +32,7 @@
             type="email"
             name="email"
             id="email"
-            class="
+            class="mt-3
               bg-gray-50
               border border-gray-300
               text-gray-900 text-sm
@@ -47,8 +46,7 @@
             placeholder="name@company.com"
             required
           />
-          <br />
-          <p class="mb-3 font-normal text-white">
+          <p class="mb-3 mt-3 font-normal text-white">
             Un email sera envoyé à l'adress indiqué afin de vous identifier.
             Merci de consulter également vos spams.
           </p>
@@ -58,7 +56,6 @@
       <div
         class="
           border-t-2 border-neutral-100
-          px-6
           py-3
           dark:border-neutral-600 dark:text-neutral-50
         "
@@ -151,10 +148,10 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
-.center-content {
+.center-content{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
 }
 </style>
