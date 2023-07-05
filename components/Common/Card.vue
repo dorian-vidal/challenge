@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center content-center">
     <div
-      class="
+      class="center-content
         card__section
         max-w-sm
         p-6
