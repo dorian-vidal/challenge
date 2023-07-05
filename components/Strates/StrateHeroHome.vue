@@ -43,6 +43,7 @@ export default {
 
 <style lang="scss">
 .main {
+  height : 100vh;
   background-color: #1b1b38;
 }
 // .strate-hero-home {

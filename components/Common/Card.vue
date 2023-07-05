@@ -150,4 +150,10 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
+.center-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 </style>
