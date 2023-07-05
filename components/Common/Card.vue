@@ -1,5 +1,11 @@
 <template>
   <div class="flex justify-center content-center">
+    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
+      E mail envoyé avec succes !
+    </div>
+    <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
+      Erreur lors de l'envoi de l'e-mail.
+    </div>
     <div
       class="center-content
         card__section
@@ -32,6 +38,7 @@
             type="email"
             name="email"
             id="email"
+            v-model="form.email"
             class="mt-3
               bg-gray-50
               border border-gray-300
@@ -61,6 +68,7 @@
         "
       >
         <a
+          @click="sendEmail()"
           href="#"
           class="
             inline-flex
@@ -100,6 +108,7 @@ export default {
       showModal: false,
       success: false,
       error: false,
+      response: "",
 
       form: {
         name: "",
@@ -112,35 +121,21 @@ export default {
     };
   },
   methods: {
-    updateValue: function (value) {
-      this.$emit("input", value);
-    },
+    sendEmail() {
+      const email = document.getElementById('email').value;
 
-    // MODAL / FORM
-    submitForm() {
-      axios
-        .post("/contact", this.form)
-        .then((res) => {
-          //Perform Success Action
-          console.log("res", res);
-          this.status = "res";
-          this.$router.push("/");
+      axios.post("https://mt4challenge.onrender.com/auth/login", this.form )
+        .then((response) => {
           this.success = true;
-          setTimeout(() => {
-            this.showModal = false;
-          }, 3000);
+          this.error = false;
+          console.log(response)
         })
         .catch((error) => {
-          // error.response.status Check status code
-          console.log("error", error);
-          this.status = "error";
-          this.success = true;
-        })
-        .finally(() => {
-          //Perform action in always
+          this.success = false;
+          this.error = true;
         });
-    },
-  },
+    }
+  }
 };
 </script>
 
