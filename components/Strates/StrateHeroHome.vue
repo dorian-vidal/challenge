@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <c-header title="Deconnexion" class="" />
+    <c-header class="" />
     <c-card></c-card>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
 
 <style lang="scss">
 .main {
-  height : 100vh;
+  height: 100vh;
   background-color: #1b1b38;
 }
 // .strate-hero-home {

@@ -47,6 +47,7 @@
             placeholder="name@company.com"
             required
           />
+          <br />
           <p class="mb-3 font-normal text-white">
             Un email sera envoyé à l'adress indiqué afin de vous identifier.
             Merci de consulter également vos spams.
@@ -150,10 +151,10 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
-.center-content{
+.center-content {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 </style>
