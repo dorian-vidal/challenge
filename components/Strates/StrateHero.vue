@@ -145,12 +145,13 @@ export default {
         })
         .then((response) => {
           if (this.user.first_name.length > 0) {
-            console.log("tototototot");
             this.button_send = false;
           }
           this.success = true;
           this.error = false;
           console.log("Requête POST réussie", response);
+          this.$router.push(`/me?token=${response.data.token}`)
+
         })
         .catch((error) => {
           this.success = false;
