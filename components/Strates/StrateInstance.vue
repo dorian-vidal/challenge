@@ -2,7 +2,7 @@
   <div class="main">
     <c-header title="Déconnexion" class="" />
     <div class="flex justify-center content-center">
-      <div
+      <div aria-disabled="false"
         class="
           center-content
           card__section
@@ -27,6 +27,7 @@
         <textarea
           id="message"
           rows="4"
+          v-model="sshPublicKey"
           class="
             block
             p-2.5
@@ -43,7 +44,6 @@
             dark:focus:ring-blue-500
             dark:focus:border-blue-500
           "
-          placeholder="Write your thoughts here..."
         ></textarea>
 
         <br />
@@ -165,9 +165,9 @@
 export default {
   name: "StrateInstance",
   props: {
-    id: {
+    sshPublicKey: {
       type: String,
-      required: false,
+      required: true,
     },
     backgroundUrl: {
       type: String,
@@ -193,6 +193,7 @@ export default {
   data: function () {
     return {
       isOpen: false,
+      sshPublicKey: "", 
     };
   },
 };
