@@ -8,16 +8,10 @@
     <div class="container relative h-full py-6 lg:py-8 c-header__container">
       <div class="min-h-full c-header__row">
         <div class="flex items-center lg:justify-between">
-          <div class="flex-1 lg:hidden c-header__burger" @click="openMenu">
-            <base-use-svg
-              id="burger-close"
-              size="xl"
-              @click="isOpen = !isOpen"
-              :class="{ isOpen: isOpen }"
-              class="z-[3]"
-              :color="isFixed ? 'black' : 'white'"
-            />
-          </div>
+          <div
+            class="flex-1 lg:hidden c-header__burger"
+            @click="openMenu"
+          ></div>
           <div class="flex flex-auto c-header__logo">
             <h1
               class="

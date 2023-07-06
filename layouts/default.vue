@@ -1,14 +1,9 @@
 <template>
   <main id="main" class="relative dark:bg-gray-800">
-    <c-svg-icons />
     <!-- <c-header /> -->
     <transition name="fade">
       <nuxt class="page-content" />
     </transition>
-    <c-footer />
-    <c-sidebar id="menu">
-      <c-nav-menu :is-sidebar="false" />
-    </c-sidebar>
   </main>
 </template>
 
