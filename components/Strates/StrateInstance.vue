@@ -28,7 +28,7 @@
           disabled
           id="message"
           rows="4"
-          v-model="sshPublicKey"
+          v-model="user.sshPublicKey"
           class="
             block
             p-2.5
@@ -56,7 +56,7 @@
           <input
             type="text"
             name="host"
-            v-model="host"
+            v-model="user.host"
             id="host"
             class="
               bg-gray-50
@@ -76,7 +76,7 @@
           <input
             type="text"
             name="username"
-            v-model="username"
+            v-model="user.username"
             id="username"
             class="
               bg-gray-50
@@ -166,18 +166,25 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "StrateInstance",
   props: {
-    sshPublicKey: {
-      type: String,
-      required: true,
+    user: {
+      sshPublicKey: {
+        type: String,
+        required: true,
+      },
+      host: {
+        type: String,
+        required: true,
+      },
+      username: {
+        type: String,
+        required: true,
+      },
     },
-    host: {
-      type: String,
-      required: true,
-    },
-    username: {
+    token: {
       type: String,
       required: true,
     },
@@ -202,14 +209,40 @@ export default {
       default: "En savoir plus.",
     },
   },
+  
   data: function () {
     return {
       isOpen: false,
-      sshPublicKey: "", 
-      username: "",
-      host: ""
     };
   },
+
+
+  methods: {
+    sendForm() {
+      this.$emit('update-parent-data', this.user);
+      
+      console.log(this.user);
+      const formData = {
+        host: this.user.host,
+        username: this.user.username,
+      }
+      console.log(formData)
+      axios.post('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${this.token}`,
+          }
+        })
+        .then((response) => {
+          console.log('Requête POST réussie', response);
+        })
+        .catch((error) => {
+          console.error('Erreur lors de la requête POST', error);
+        });
+    },
+  },
+
+
 };
 </script>
 
