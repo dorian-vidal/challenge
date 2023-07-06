@@ -15,7 +15,6 @@
         class="
           center-content
           card__section
-          max-w-xl
           p-6
           bg-white
           border border-gray-200
@@ -196,10 +195,9 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
-.center-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+@media(max-width : 767px){
+  .center-content{
+    width : fit-content !important;
+  }
 }
 </style>

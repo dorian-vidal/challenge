@@ -35,7 +35,7 @@
             Retour
           </a>
           <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
-            Etes vous pret ?
+            Etes vous prêt ?
           </h1>
           <p class="mb-2 text-2xl font-bold tracking-tight text-white">15/20</p>
         </div>
@@ -79,9 +79,8 @@
           </div>
           <br />
           <div class="border border-gray-200">
-            <p class="mb-2 text-xl font-bold tracking-tight text-white">
-              15/20
-            </p>
+            <p class="text-2xl p-2 font-bold tracking-tight text-white">15/20</p>
+
           </div>
         </div>
       </div>
@@ -134,7 +133,13 @@ export default {
 .center-content {
   position: absolute;
   top: 50%;
+  width: 600px;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+@media(max-width : 767px){
+  .center-content{
+    width : fit-content !important;
+  }
 }
 </style>

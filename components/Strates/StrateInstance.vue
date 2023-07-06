@@ -16,7 +16,6 @@
         class="
           center-content
           card__section
-          max-w-xl
           p-6
           bg-white
           border border-gray-200
@@ -25,15 +24,13 @@
           dark:bg-gray-800 dark:border-gray-700
         "
       >
-        <h1 class="text-2xl font-bold text-white">
+        <h1 class="text-2xl font-bold text-white mb-2">
           Configurez l'accès au serveur
         </h1>
-        <br />
-        <p class="text-white">
+        <p class="text-white mb-2">
           Accordez l'accès a l'utilisateur identifié par la clé publique
           suivante :
         </p>
-        <br />
         <textarea
           disabled
           id="message"
@@ -43,6 +40,7 @@
             block
             p-2.5
             w-full
+            mb-2
             text-sm text-gray-900
             bg-gray-50
             rounded-lg
@@ -56,12 +54,9 @@
             dark:focus:border-blue-500
           "
         ></textarea>
-
-        <br />
-        <p class="text-white">
+        <p class="text-white mb-2">
           Préciser les coordonnées d'accès de votre utilisateur ici :
         </p>
-        <br />
         <div>
           <input
             type="text"
@@ -75,6 +70,7 @@
               rounded-lg
               focus:ring-blue-500 focus:border-blue-500
               block
+              mb-2
               w-full
               p-2.5
               dark:text-white
@@ -82,7 +78,6 @@
             placeholder="host"
             required
           />
-          <br />
           <input
             type="text"
             name="username"
@@ -98,19 +93,16 @@
               w-full
               p-2.5
               dark:text-white
+              mb-2
             "
             placeholder="exemple@company.com"
             required
           />
         </div>
-        <br />
-        <p class="text-white">
+        <p class="text-white mb-2">
           Le challenge utilisera la commande suivante pour connecter à votre
           compte :
         </p>
-        <br />
-        <p class="text-white">mettre props</p>
-        <br />
         <div class="flex justify-between">
           <a
             href="#"
@@ -238,6 +230,12 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 800px;
   transform: translate(-50%, -50%);
+}
+@media(max-width : 767px){
+  .center-content{
+    width : fit-content !important;
+  }
 }
 </style>

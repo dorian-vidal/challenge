@@ -9,7 +9,6 @@
     <div
       class="center-content
         card__section
-        max-w-sm
         p-6
         bg-white
         border border-gray-200
@@ -148,5 +147,11 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+
+@media(max-width : 767px){
+  .center-content{
+    width : fit-content !important;
+  }
 }
 </style>
