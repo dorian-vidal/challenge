@@ -189,8 +189,6 @@ export default {
 </script>
 
 <style lang="scss">
-$transition: opacity 450ms $ease-in-out-quad;
-
 .c-header {
   background-color: $background;
 }

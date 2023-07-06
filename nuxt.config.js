@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "Vroom",
+    title: "mt4challenge",
     htmlAttrs: {
       lang: "fr",
     },
@@ -17,48 +17,10 @@ export default {
       { hid: "description", name: "description", content: "" },
       { name: "format-detection", content: "telephone=no" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Vroom" },
-      {
-        name: "description",
-        content:
-          "Nous accompagnons vos enfants selon leur besoins quotidiens. Notre service vous assure pleine tranquillité et sérénité tout au long de la journée.",
-      },
-      {
-        name: "og:title",
-        content: "Vroom - La mobilité sur mesure pour vos enfants",
-      },
-      {
-        name: "og:desciption",
-        content:
-          "Nous accompagnons vos enfants selon leur besoins quotidiens. Notre service vous assure pleine tranquillité et sérénité tout au long de la journée.",
-      },
-      {
-        name: "og:locale",
-        content: "fr_FR",
-      },
-      {
-        name: "og:image",
-        content: "",
-      },
-      {
-        property: "og:url",
-        content: `https://vroom-app.netlify.app/`,
-      },
-      {
-        // a modifier avec le bon url : https://search.google.com/search-console/welcome?hl=fr
-        name: "google-site-verification",
-        content: "",
-      },
+      { property: "og:site_name", content: "mt4challenge" },
     ],
 
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-  },
-  manifest: {
-    name: "VroomKids",
-    short_name: "VroomKids Nuxt",
-    description: "VroomKids manifest description",
-    theme_color: "#2C3E50",
-    start_url: "/",
   },
 
   publicRuntimeConfig: {
@@ -100,18 +62,12 @@ export default {
     "@nuxtjs/tailwindcss",
     "nuxt-purgecss",
     "@nuxtjs/style-resources",
-    "nuxt-lazysizes",
   ],
   pageTransition: {
     name: "fade",
     mode: "out-in",
     beforeEnter(el) {
       console.log("Before enter...");
-    },
-  },
-  lazySizes: {
-    plugins: {
-      unveilhooks: true,
     },
   },
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -142,21 +98,8 @@ export default {
     //     : process.env.NODE_ENV !== "staging",
     // baseURL: process.env.BASE_URL || "http://localhost:30",
   },
-  proxy: {
-    "/api/": {
-      target: "https://hetic-vroom-api.one-website.com/",
-      pathRewrite: { "^/api/": "" },
-      changeOrigin: true,
-    },
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: ["epic-spinners"],
-  },
+
   loading: false,
-  publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL || "http://localhost:80",
-    nodeEnv: process.env.NODE_ENV || "development",
-  },
 };
