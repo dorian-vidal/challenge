@@ -28,26 +28,6 @@
         <h1 class="text-2xl font-bold text-white">Coordonnées</h1>
         <p class="text-white mb-3">Merci de renseigner vos coordonées ici.</p>
         <div>
-          <input
-            type="email"
-            name="email"
-            v-model="user.email"
-            id="email"
-            class="
-              bg-gray-50
-              border border-gray-300
-              text-gray-900 text-sm
-              rounded-lg
-              focus:ring-blue-500 focus:border-blue-500
-              block
-              w-full
-              p-2.5
-              mb-3
-              dark:text-white
-            "
-            placeholder="Prénom"
-            required
-          />
 
           <input
             type="text"
@@ -66,7 +46,7 @@
               mb-3
               dark:text-white
             "
-            placeholder="Nom"
+            placeholder="Prénom"
             required
           />
           <input
@@ -85,7 +65,7 @@
               p-2.5
               dark:text-white
             "
-            placeholder="name@company.com"
+            placeholder="Nom"
             required
           />
         </div>
@@ -123,10 +103,6 @@ export default {
   name: "StrateHero",
   props: {
     user: {
-      email: {
-        type: String,
-        required: true,
-      },
       first_name: {
         type: String,
         required: true,
@@ -148,7 +124,6 @@ export default {
   computed: {
     disabledButtonSend() {
       return this.user.first_name.length &&
-        this.user.email.length &&
         this.user.last_name.length > 0
         ? false
         : true;
@@ -157,7 +132,7 @@ export default {
   methods: {
     sendForm() {
       const formData = {
-        email: this.user.email,
+        email: this.$route.query.email,
         first_name: this.user.first_name,
         last_name: this.user.last_name,
       };

@@ -1,6 +1,6 @@
 <template>
   <div class="" id="page-home">
-    <strate-hero :user="me" :token="token" @update-user-data="updateUserData"/>
+    <strate-hero :user="me"  @update-user-data="updateUserData"/>
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
   data() {
     return {
       me : {
-        email: "",
         first_name: "",
         last_name: ""
       }

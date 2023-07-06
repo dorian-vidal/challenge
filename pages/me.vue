@@ -29,10 +29,11 @@ export default {
 
   methods: {
     authMe(){
+      this.$cookies.set('cookie-token', this.token)
       axios.get('https://mt4challenge.onrender.com/auth/me', {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${this.token}`,
+            Authorization: `Bearer ${this.$cookies.get('cookie-token')}`,
           },
         })
         .then((response) => {

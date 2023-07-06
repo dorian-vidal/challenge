@@ -37,11 +37,8 @@ export default {
   plugins: [
     { src: "~/plugins/tailwind-components.js" },
     { src: "~/plugins/eventHub.js", mode: "client" },
-    { src: "~/plugins/html/observer.js", mode: "client" },
     { src: "~/plugins/html/device.js", mode: "client" },
     { src: "~/plugins/html/fixScroll.js", mode: "client" },
-    { src: "~/plugins/vue-carousel.js", mode: "client" },
-    { src: "~/plugins/vue-visible.js", mode: "client" },
     "~/plugins/components",
     "~/plugins/global.js",
   ],
@@ -77,6 +74,7 @@ export default {
     "nuxt-svg-loader",
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
+    'cookie-universal-nuxt',
   ],
   // Purge module configuration: https://purgecss.com/guides/nuxt.html
   purgeCSS: {
