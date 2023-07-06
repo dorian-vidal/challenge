@@ -1,6 +1,6 @@
 <template>
   <div class="" id="page-home">
-    <strate-instance :sshPublicKey="sshPublicKey" :host="host" :username="username"/>
+    <strate-instance :user="me" :token="token" @update-user-data="updateUserData"/>
   </div>
 </template>
 
@@ -11,54 +11,43 @@ export default {
 
   data() {
     return {
-      sshPublicKey: "", 
-      host:'',
-      username: ''
+      token : this.$route.query.token,
+      me : {
+        sshPublicKey: "",
+        host: "",
+        username: ""
+      },
     };
   },
   head() {
     return {};
   },
-  methods: {
-  sendForm() {
-    console.log(username)
-    const host = this.host;
-    const username = this.username;
-    const formData = {
-      host: host,
-      username: username
-    }
-    console.log(formData)
-    axios.post('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${this.$route.query.token}`,
-        }
-      })
-      .then((response) => {
-        console.log('Requête POST réussie', response);
-      })
-      .catch((error) => {
-        console.error('Erreur lors de la requête POST', error);
-      });
-    }
-  },
 
   mounted(){
-      axios
-        .get('https://mt4challenge.onrender.com/auth/me', {
+    this.authMe()   
+  },
+
+  methods: {
+    authMe(){
+      axios.get('https://mt4challenge.onrender.com/auth/me', {
           headers: {
             Accept: 'application/json',
-            Authorization: `Bearer ${this.$route.query.token}`,
+            Authorization: `Bearer ${this.token}`,
           },
         })
         .then((response) => {
-          this.sshPublicKey = response.data.ssh_public_key_to_add;
-          console.log(this.sshPublicKey) 
+          this.me.sshPublicKey = response.data.ssh_public_key_to_add;
+          console.log(this.me) 
         })
         .catch((error) => {
           console.error('Error fetching SSH key:', error);
         });
     },
+
+    updateUserData(newData) {
+      this.me = newData;
+    }
+
+  },
 };
 </script>
