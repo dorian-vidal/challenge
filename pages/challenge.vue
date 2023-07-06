@@ -1,12 +1,12 @@
 <template>
   <div class="" id="page-home">
-    <strate-hero />
+    <strate-challenge />
   </div>
 </template>
 
 <script>
 export default {
-  name: "Register",
+  name: "Challenge",
 
   data() {
     return {};

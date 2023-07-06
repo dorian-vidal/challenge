@@ -2,7 +2,6 @@
   <header
     class="sticky top-0 z-20 c-header"
     :class="{
-      'is-home': isHome,
       'is-fixed': isFixed,
     }"
   >
@@ -60,13 +59,6 @@
             >
               {{ title }}
             </h2>
-            <!-- <t-button
-              tagName="a"
-              class="w-full px-4 py-2 mb-0 cursor-pointer lg:w-auto"
-              variant="secondaryWhite"
-              @click="showModal = true"
-              ><span class="text-md md:text-lg">Une question ?</span></t-button
-            > -->
           </div>
         </div>
       </div>
@@ -75,7 +67,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import axios from "axios";
 
 export default {
@@ -110,13 +101,7 @@ export default {
       required: false,
     },
   },
-  computed: {
-    ...mapGetters({
-      isHome: "global/getIsHome",
-      header: "global/getGlobal",
-      screen: "global/getScreen",
-    }),
-  },
+  computed: {},
   mounted() {
     this.bindEvents();
     this.$nextTick(() => {
@@ -148,7 +133,6 @@ export default {
     onScroll(scroll) {
       if (this.$fixScroll.state) return;
       this.isFixed = scroll.top > 0;
-      this.isLogo = scroll.top > 0 || !this.isHome;
     },
     onResize() {
       this.onScroll(this.$device.scroll);

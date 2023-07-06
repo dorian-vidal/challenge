@@ -14,7 +14,6 @@
 
 <script>
 import debounce from "~/utils/debounce";
-import { mapGetters } from "vuex";
 
 export default {
   data: function () {
@@ -24,12 +23,7 @@ export default {
       page: this.$route.name,
     };
   },
-  computed: {
-    ...mapGetters({
-      config: "global/getConfig",
-      screen: "global/getScreen",
-    }),
-  },
+  computed: {},
   created() {
     this._onResize = debounce(this._onResize, 200);
   },

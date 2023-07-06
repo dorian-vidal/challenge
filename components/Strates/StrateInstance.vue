@@ -15,18 +15,41 @@
           dark:bg-gray-800 dark:border-gray-700
         "
       >
-        <h1 class="text-2xl font-bold text-white">Consignes</h1>
-        <br />
-        <p class="text-white">Bienvenue sur le challenge unix shell</p>
+        <h1 class="text-2xl font-bold text-white">
+          Configurez l'accès au serveur
+        </h1>
         <br />
         <p class="text-white">
-          Vous allez fgdfdfhgf hgd fhdh dfhfdhd fdhfd h hf hf fd dhhfdhhfhfhf
-          hfhffhdfff hfhfhfdfhdfhhfhf ffhhffhd
+          Accordez l'accès a l'utilisateur identifié par la clé publique
+          suivante :
         </p>
         <br />
-        <h1 class="text-2xl font-bold text-white">Coordonnées</h1>
+        <textarea
+          id="message"
+          rows="4"
+          class="
+            block
+            p-2.5
+            w-full
+            text-sm text-gray-900
+            bg-gray-50
+            rounded-lg
+            border border-gray-300
+            focus:ring-blue-500 focus:border-blue-500
+            dark:bg-gray-700
+            dark:border-gray-600
+            dark:placeholder-gray-400
+            dark:text-white
+            dark:focus:ring-blue-500
+            dark:focus:border-blue-500
+          "
+          placeholder="Write your thoughts here..."
+        ></textarea>
+
         <br />
-        <p class="text-white">Merci de renseigner vos coordonées ici.</p>
+        <p class="text-white">
+          Préciser les coordonnées d'accès de votre utilisateur ici :
+        </p>
         <br />
         <div>
           <input
@@ -68,7 +91,33 @@
           />
         </div>
         <br />
-        <div class="">
+        <p class="text-white">
+          Le challenge utilisera la commande suivante pour connecter à votre
+          compte :
+        </p>
+        <br />
+        <p class="text-white">mettre props</p>
+        <br />
+        <div class="flex justify-between">
+          <a
+            href="#"
+            class="
+              inline-flex
+              items-center
+              px-3
+              py-2
+              text-sm
+              font-medium
+              text-center text-white
+              bg-blue-700
+              rounded-lg
+              hover:bg-blue-800
+              focus:ring-4 focus:outline-none focus:ring-blue-300
+              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            "
+          >
+            Retour
+          </a>
           <a
             href="#"
             class="
@@ -88,6 +137,25 @@
           >
             ENVOYEZ !
           </a>
+          <a
+            href="#"
+            class="
+              inline-flex
+              items-center
+              px-3
+              py-2
+              text-sm
+              font-medium
+              text-center text-white
+              bg-blue-700
+              rounded-lg
+              hover:bg-blue-800
+              focus:ring-4 focus:outline-none focus:ring-blue-300
+              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            "
+          >
+            Suite
+          </a>
         </div>
       </div>
     </div>
@@ -95,7 +163,7 @@
 </template>
 <script>
 export default {
-  name: "StrateHero",
+  name: "StrateInstance",
   props: {
     id: {
       type: String,

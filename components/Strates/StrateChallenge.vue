@@ -1,0 +1,140 @@
+<template>
+  <div class="main">
+    <c-header title="Déconnexion" class="" />
+    <div class="flex justify-center content-center">
+      <div
+        class="
+          center-content
+          card__section
+          max-w-xl
+          p-6
+          bg-white
+          rounded-lg
+          shadow
+          dark:bg-gray-800 dark:border-gray-700
+        "
+      >
+        <div class="flex justify-between card__header">
+          <a
+            href="#"
+            class="
+              inline-flex
+              items-center
+              px-3
+              py-2
+              text-sm
+              font-medium
+              text-center text-white
+              bg-blue-700
+              rounded-lg
+              hover:bg-blue-800
+              focus:ring-4 focus:outline-none focus:ring-blue-300
+              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
+            "
+          >
+            Retour
+          </a>
+          <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
+            Etes vous pret ?
+          </h1>
+          <p class="mb-2 text-2xl font-bold tracking-tight text-white">15/20</p>
+        </div>
+        <div
+          class="
+            mb-2
+            text-2xl
+            font-bold
+            tracking-tight
+            text-white
+            border-b-2 border-neutral-100
+            py-3
+            dark:border-neutral-600 dark:text-neutral-50
+          "
+        ></div>
+        <br />
+        <div class="group__button">
+          <button
+            type="email"
+            name="email"
+            id="email"
+            class="
+              bg-gray-50
+              border border-gray-300
+              text-gray-900 text-sm
+              rounded-lg
+              focus:ring-blue-500 focus:border-blue-500
+              block
+              w-full
+              p-2.5
+              dark:text-white
+            "
+            placeholder="name@company.com"
+            required
+          >
+            Lancer le Challenge !
+          </button>
+          <br />
+          <div class="card__footer rounded-lg">
+            <h1 class="text-xl text-center lg:text-2xl">Score: 0/20</h1>
+          </div>
+          <br />
+          <div class="border border-gray-200">
+            <p class="mb-2 text-xl font-bold tracking-tight text-white">
+              15/20
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: "StrateChallenge",
+  props: {
+    id: {
+      type: String,
+      required: false,
+    },
+    title: {
+      type: String,
+      required: false,
+      default: "Duis esse est adipisicing elit veniam",
+    },
+    subtitle: {
+      type: String,
+      required: false,
+      default: "amet ipsum dolore.",
+    },
+    ctaLabel: {
+      type: String,
+      required: false,
+      default: "En savoir plus.",
+    },
+  },
+  data: function () {
+    return {
+      isOpen: false,
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+.main {
+  height: 100vh;
+  background-color: #1b1b38;
+}
+.card__section {
+  background-color: #32325a !important;
+}
+.card__footer {
+  background-color: #d4edda;
+}
+.center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
