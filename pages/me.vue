@@ -1,6 +1,6 @@
 <template>
   <div class="" id="page-home">
-    <strate-instance :sshPublicKey="sshPublicKey"/>
+    <strate-instance :sshPublicKey="sshPublicKey" :host="host" :username="username"/>
   </div>
 </template>
 
@@ -12,13 +12,38 @@ export default {
   data() {
     return {
       sshPublicKey: "", 
+      host:'',
+      username: ''
     };
   },
   head() {
     return {};
   },
-  methods: {},
-  
+  methods: {
+  sendForm() {
+    console.log(username)
+    const host = this.host;
+    const username = this.username;
+    const formData = {
+      host: host,
+      username: username
+    }
+    console.log(formData)
+    axios.post('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${this.$route.query.token}`,
+        }
+      })
+      .then((response) => {
+        console.log('Requête POST réussie', response);
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la requête POST', error);
+      });
+    }
+  },
+
   mounted(){
       axios
         .get('https://mt4challenge.onrender.com/auth/me', {

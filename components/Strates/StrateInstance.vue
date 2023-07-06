@@ -25,6 +25,7 @@
         </p>
         <br />
         <textarea
+          disabled
           id="message"
           rows="4"
           v-model="sshPublicKey"
@@ -53,9 +54,10 @@
         <br />
         <div>
           <input
-            type="email"
-            name="email"
-            id="email"
+            type="text"
+            name="host"
+            v-model="host"
+            id="host"
             class="
               bg-gray-50
               border border-gray-300
@@ -67,14 +69,15 @@
               p-2.5
               dark:text-white
             "
-            placeholder="name@company.com"
+            placeholder="host"
             required
           />
           <br />
           <input
-            type="email"
-            name="email"
-            id="email"
+            type="text"
+            name="username"
+            v-model="username"
+            id="username"
             class="
               bg-gray-50
               border border-gray-300
@@ -86,7 +89,7 @@
               p-2.5
               dark:text-white
             "
-            placeholder="name@company.com"
+            placeholder="exemple@company.com"
             required
           />
         </div>
@@ -139,6 +142,7 @@
           </a>
           <a
             href="#"
+            @click="sendForm"
             class="
               inline-flex
               items-center
@@ -169,6 +173,14 @@ export default {
       type: String,
       required: true,
     },
+    host: {
+      type: String,
+      required: true,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
     backgroundUrl: {
       type: String,
       required: false,
@@ -194,6 +206,8 @@ export default {
     return {
       isOpen: false,
       sshPublicKey: "", 
+      username: "",
+      host: ""
     };
   },
 };
