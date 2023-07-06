@@ -1,6 +1,13 @@
 <template>
   <div class="main">
+    
     <c-header title="Déconnexion" class="" />
+    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
+      Requête reussie !
+    </div>
+    <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
+      Erreur lors de l'envoi de l'e-mail.
+    </div>
     <div class="flex justify-center content-center">
       <div aria-disabled="false"
         class="
@@ -102,44 +109,7 @@
         <p class="text-white">mettre props</p>
         <br />
         <div class="flex justify-between">
-          <a
-            href="#"
-            class="
-              inline-flex
-              items-center
-              px-3
-              py-2
-              text-sm
-              font-medium
-              text-center text-white
-              bg-blue-700
-              rounded-lg
-              hover:bg-blue-800
-              focus:ring-4 focus:outline-none focus:ring-blue-300
-              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-            "
-          >
-            Retour
-          </a>
-          <a
-            href="#"
-            class="
-              inline-flex
-              items-center
-              px-3
-              py-2
-              text-sm
-              font-medium
-              text-center text-white
-              bg-blue-700
-              rounded-lg
-              hover:bg-blue-800
-              focus:ring-4 focus:outline-none focus:ring-blue-300
-              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-            "
-          >
-            ENVOYEZ !
-          </a>
+          
           <a
             href="#"
             @click="sendForm"
@@ -158,7 +128,7 @@
               dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
             "
           >
-            Suite
+            Envoyer
           </a>
         </div>
       </div>
@@ -213,9 +183,10 @@ export default {
   data: function () {
     return {
       isOpen: false,
+      success: false,
+      error: false,
     };
   },
-
 
   methods: {
     sendForm() {
@@ -227,16 +198,20 @@ export default {
         username: this.user.username,
       }
       console.log(formData)
-      axios.post('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
+      axios.patch('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
           headers: {
             Accept: 'application/json',
             Authorization: `Bearer ${this.token}`,
           }
         })
         .then((response) => {
+          this.success = true;
+          this.error = false;
           console.log('Requête POST réussie', response);
         })
         .catch((error) => {
+          this.success = false;
+          this.error = true;
           console.error('Erreur lors de la requête POST', error);
         });
     },
