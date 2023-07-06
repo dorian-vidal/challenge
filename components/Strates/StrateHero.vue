@@ -1,11 +1,14 @@
 <template>
   <div class="main">
     <c-header title="Déconnexion" class="" />
-    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
-     Inscription validée
+    <div
+      v-if="success"
+      class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg"
+    >
+      Inscription validée
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
-      {{error}}
+      {{ error }}
     </div>
     <div class="flex justify-center content-center">
       <div
@@ -46,7 +49,7 @@
             placeholder="Prénom"
             required
           />
-          
+
           <input
             type="text"
             name="first_name"
@@ -89,8 +92,9 @@
         </div>
         <br />
         <div class="">
-          <a
+          <button
             href="#"
+            :disabled="disabledButtonSend"
             @click="sendForm"
             class="
               inline-flex
@@ -108,7 +112,7 @@
             "
           >
             ENVOYEZ !
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -119,53 +123,68 @@ import axios from "axios";
 export default {
   name: "StrateHero",
   props: {
-    user:{
+    user: {
       email: {
-      type: String,
-      required: true,
+        type: String,
+        required: true,
+      },
+      first_name: {
+        type: String,
+        required: true,
+      },
+      last_name: {
+        type: String,
+        required: true,
+      },
     },
-    first_name: {
-      type: String,
-      required: true,
-    },
-    last_name: {
-      type: String,
-      required: true,
-    },
-    }
   },
   data: function () {
     return {
+      button_send: true,
       isOpen: false,
       success: false,
       error: false,
     };
   },
-  methods:{
+  computed: {
+    disabledButtonSend() {
+      return this.user.first_name.length &&
+        this.user.email.length &&
+        this.user.last_name.length > 0
+        ? false
+        : true;
+    },
+  },
+  methods: {
     sendForm() {
       const formData = {
         email: this.user.email,
         first_name: this.user.first_name,
-        last_name: this.user.last_name
+        last_name: this.user.last_name,
       };
-      console.log(formData)
-      axios.post('https://mt4challenge.onrender.com/auth/register', formData,{
-        headers: {
-          Accept: 'application/json',
-        }
-      })
-      .then((response) => {
-        this.success = true;
-        this.error = false;
-        console.log('Requête POST réussie', response);
-      })
-      .catch((error) => {
-        this.success = false;
-        this.error = true;
-        console.error('Erreur lors de la requête POST', error);
-      });
+      console.log(formData);
+      axios
+        .post("https://mt4challenge.onrender.com/auth/register", formData, {
+          headers: {
+            Accept: "application/json",
+          },
+        })
+        .then((response) => {
+          if (this.user.first_name.length > 0) {
+            console.log("tototototot");
+            this.button_send = false;
+          }
+          this.success = true;
+          this.error = false;
+          console.log("Requête POST réussie", response);
+        })
+        .catch((error) => {
+          this.success = false;
+          this.error = true;
+          console.error("Erreur lors de la requête POST", error);
+        });
     },
-  }
+  },
 };
 </script>
 

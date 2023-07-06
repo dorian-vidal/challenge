@@ -1,15 +1,18 @@
 <template>
   <div class="main">
-    
     <c-header title="Déconnexion" class="" />
-    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
+    <div
+      v-if="success"
+      class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg"
+    >
       Requête reussie !
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
       Erreur lors de l'envoi de l'e-mail.
     </div>
     <div class="flex justify-center content-center">
-      <div aria-disabled="false"
+      <div
+        aria-disabled="false"
         class="
           center-content
           card__section
@@ -109,7 +112,6 @@
         <p class="text-white">mettre props</p>
         <br />
         <div class="flex justify-between">
-          
           <a
             href="#"
             @click="sendForm"
@@ -179,7 +181,7 @@ export default {
       default: "En savoir plus.",
     },
   },
-  
+
   data: function () {
     return {
       isOpen: false,
@@ -190,34 +192,37 @@ export default {
 
   methods: {
     sendForm() {
-      this.$emit('update-parent-data', this.user);
-      
+      this.$emit("update-parent-data", this.user);
+
       console.log(this.user);
       const formData = {
         host: this.user.host,
         username: this.user.username,
-      }
-      console.log(formData)
-      axios.patch('https://mt4challenge.onrender.com/challenge/new-instance', formData, {
-          headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${this.token}`,
+      };
+      console.log(formData);
+      axios
+        .patch(
+          "https://mt4challenge.onrender.com/challenge/new-instance",
+          formData,
+          {
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${this.token}`,
+            },
           }
-        })
+        )
         .then((response) => {
           this.success = true;
           this.error = false;
-          console.log('Requête POST réussie', response);
+          console.log("Requête POST réussie", response);
         })
         .catch((error) => {
           this.success = false;
           this.error = true;
-          console.error('Erreur lors de la requête POST', error);
+          console.error("Erreur lors de la requête POST", error);
         });
     },
   },
-
-
 };
 </script>
 
