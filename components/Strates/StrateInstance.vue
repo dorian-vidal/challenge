@@ -8,7 +8,7 @@
       Requête reussie !
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
-      Erreur lors de l'envoi de l'e-mail.
+     {{error}}
     </div>
     <div class="flex justify-center content-center">
       <div
@@ -206,11 +206,21 @@ export default {
         .then((response) => {
           this.success = true;
           this.error = false;
+          this.$router.push('/challenge')
           console.log("Requête POST réussie", response);
         })
         .catch((error) => {
           this.success = false;
-          this.error = true;
+          if(typeof error.response.data.message === 'string') {
+            error.response.data.message = [error.response.data.message];
+          }
+          this.error = error.response.data.message[0];
+          if(this.error === 'INVALID_HOST'){
+            this.error = "Le host n'est pas valide "
+          }
+          if(this.error === 'INVALID_USERNAME'){
+            this.error = "Le user n'est pas valide "
+          }
           console.error("Erreur lors de la requête POST", error);
         });
     },
