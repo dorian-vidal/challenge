@@ -21,19 +21,10 @@
           dark:bg-gray-800 dark:border-gray-700
         "
       >
-        <h1 class="text-2xl font-bold text-white">Consignes</h1>
-        <br />
-        <p class="text-white">Bienvenue sur le challenge unix shell</p>
-        <br />
-        <p class="text-white">
-          Vous allez fgdfdfhgf hgd fhdh dfhfdhd fdhfd h hf hf fd dhhfdhhfhfhf
-          hfhffhdfff hfhfhfdfhdfhhfhf ffhhffhd
-        </p>
-        <br />
+        <h1 class="text-2xl font-bold text-white mb-3">Consignes</h1>
+        <p class="text-white mb-3">Bienvenue sur le challenge unix shell</p>
         <h1 class="text-2xl font-bold text-white">Coordonnées</h1>
-        <br />
-        <p class="text-white">Merci de renseigner vos coordonées ici.</p>
-        <br />
+        <p class="text-white mb-3">Merci de renseigner vos coordonées ici.</p>
         <div>
           <input
             type="email"
@@ -49,12 +40,13 @@
               block
               w-full
               p-2.5
+              mb-3
               dark:text-white
             "
-            placeholder="name@company.com"
+            placeholder="Prénom"
             required
           />
-          <br />
+          
           <input
             type="text"
             name="first_name"
@@ -69,9 +61,10 @@
               block
               w-full
               p-2.5
+              mb-3
               dark:text-white
             "
-            placeholder="name@company.com"
+            placeholder="Nom"
             required
           />
           <input
