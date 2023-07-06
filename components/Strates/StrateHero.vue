@@ -1,6 +1,12 @@
 <template>
   <div class="main">
     <c-header title="Déconnexion" class="" />
+    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
+     Inscription validée
+    </div>
+    <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
+      {{error}}
+    </div>
     <div class="flex justify-center content-center">
       <div
         class="
@@ -32,6 +38,7 @@
           <input
             type="email"
             name="email"
+            v-model="user.email"
             id="email"
             class="
               bg-gray-50
@@ -49,9 +56,29 @@
           />
           <br />
           <input
-            type="email"
-            name="email"
-            id="email"
+            type="text"
+            name="first_name"
+            id="first_name"
+            v-model="user.first_name"
+            class="
+              bg-gray-50
+              border border-gray-300
+              text-gray-900 text-sm
+              rounded-lg
+              focus:ring-blue-500 focus:border-blue-500
+              block
+              w-full
+              p-2.5
+              dark:text-white
+            "
+            placeholder="name@company.com"
+            required
+          />
+          <input
+            type="text"
+            v-model="user.last_name"
+            name="last_name"
+            id="last_name"
             class="
               bg-gray-50
               border border-gray-300
@@ -71,6 +98,7 @@
         <div class="">
           <a
             href="#"
+            @click="sendForm"
             class="
               inline-flex
               items-center
@@ -94,39 +122,57 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "StrateHero",
   props: {
-    id: {
+    user:{
+      email: {
       type: String,
-      required: false,
+      required: true,
     },
-    backgroundUrl: {
+    first_name: {
       type: String,
-      required: false,
-      default: "/img/photography/child+bus_homepage_green2pink.png",
+      required: true,
     },
-    title: {
+    last_name: {
       type: String,
-      required: false,
-      default: "Duis esse est adipisicing elit veniam",
+      required: true,
     },
-    subtitle: {
-      type: String,
-      required: false,
-      default: "amet ipsum dolore.",
-    },
-    ctaLabel: {
-      type: String,
-      required: false,
-      default: "En savoir plus.",
-    },
+    }
   },
   data: function () {
     return {
       isOpen: false,
+      success: false,
+      error: false,
     };
   },
+  methods:{
+    sendForm() {
+      const formData = {
+        email: this.user.email,
+        first_name: this.user.first_name,
+        last_name: this.user.last_name
+      };
+      console.log(formData)
+      axios.post('https://mt4challenge.onrender.com/auth/register', formData,{
+        headers: {
+          Accept: 'application/json',
+        }
+      })
+      .then((response) => {
+        this.success = true;
+        this.error = false;
+        console.log('Requête POST réussie', response);
+      })
+      .catch((error) => {
+        this.success = false;
+        this.error = true;
+        console.error('Erreur lors de la requête POST', error);
+      });
+    },
+  }
 };
 </script>
 
