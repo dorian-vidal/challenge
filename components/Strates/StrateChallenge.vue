@@ -75,12 +75,11 @@
           </button>
           <br />
           <div class="card__footer rounded-lg">
-            <h1 class="text-xl text-center lg:text-2xl">Score: 0/20</h1>
+            <h1 class="text-xl text-center lg:text-2xl">Score: {{score}}/20</h1>
           </div>
           <br />
           <div class="border border-gray-200">
-            <p class="text-2xl p-2 font-bold tracking-tight text-white">15/20</p>
-
+            <p class="text-2xl p-2 font-bold tracking-tight text-white">{{ description }}</p>
           </div>
         </div>
       </div>
@@ -91,31 +90,24 @@
 export default {
   name: "StrateChallenge",
   props: {
-    id: {
-      type: String,
-      required: false,
+    score: {
+      type: Number,
+      required: true,
+      default: 0,
     },
-    title: {
-      type: String,
-      required: false,
-      default: "Duis esse est adipisicing elit veniam",
-    },
-    subtitle: {
+    description: {
       type: String,
       required: false,
       default: "amet ipsum dolore.",
-    },
-    ctaLabel: {
-      type: String,
-      required: false,
-      default: "En savoir plus.",
     },
   },
   data: function () {
     return {
       isOpen: false,
+     
     };
   },
+ 
 };
 </script>
 
