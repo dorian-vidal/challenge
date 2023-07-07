@@ -78,9 +78,7 @@
             <h1 class="text-xl text-center lg:text-2xl">Score: {{score}}/20</h1>
           </div>
           <br />
-          <div class="border border-gray-200">
-            <p class="text-2xl p-2 font-bold tracking-tight text-white">{{ description }}</p>
-          </div>
+          <div class="border border-gray-200" v-html="description"></div>
         </div>
       </div>
     </div>

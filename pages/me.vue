@@ -30,8 +30,7 @@ export default {
   methods: {
     authMe(){
       this.$cookies.set('cookie-token', this.token)
-      this.$cookies.set('cookie-user', this.me.username)
-      this.$cookies.set('cookie-host', this.me.host)
+ 
       axios.get('https://mt4challenge.onrender.com/auth/me', {
           headers: {
             Accept: 'application/json',
