@@ -37,7 +37,7 @@
               l-nav__item
             "
           >
-            <h2
+            <a href="#"><h2
               class="
                 flex
                 py-1
@@ -50,9 +50,12 @@
                 lg:text-md
                 t-link
               "
+              @click="handleTitleClick"
+
             >
               {{ title }}
             </h2>
+            </a>
           </div>
         </div>
       </div>
@@ -62,6 +65,7 @@
 
 <script>
 import axios from "axios";
+import { removeCookie } from "cookie-universal-nuxt";
 
 export default {
   name: "Header",
@@ -110,6 +114,11 @@ export default {
     this.unbindEvents();
   },
   methods: {
+    handleTitleClick() {
+      this.$cookies.remove('cookie-token')
+      this.$router.push("/");
+    },
+
     bindEvents() {
       this.$eventHub.$on("onScroll", (scroll) => {
         this.onScroll(scroll);
