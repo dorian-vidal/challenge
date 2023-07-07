@@ -11,8 +11,7 @@
           bg-white
           rounded-lg
           shadow
-          dark:bg-gray-800 dark:border-gray-700
-        "
+          dark:bg-gray-800 dark:border-gray-700"
       >
         <div class="flex justify-between card__header">
           <a
@@ -105,7 +104,6 @@ export default {
      
     };
   },
- 
 };
 </script>
 

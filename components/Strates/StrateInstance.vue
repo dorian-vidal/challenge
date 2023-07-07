@@ -95,7 +95,7 @@
               dark:text-white
               mb-2
             "
-            placeholder="exemple@company.com"
+            placeholder="username"
             required
           />
         </div>
