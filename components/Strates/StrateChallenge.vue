@@ -11,8 +11,14 @@
           bg-white
           rounded-lg
           shadow
-          dark:bg-gray-800 dark:border-gray-700"
+          dark:bg-gray-800 dark:border-gray-700
+        "
       >
+        <div
+          v-html="error"
+          v-if="error"
+          class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg"
+        ></div>
         <div class="flex justify-between card__header">
           <a
             href="#"
@@ -36,7 +42,6 @@
           <h1 class="mb-2 text-2xl font-bold tracking-tight text-white">
             Etes vous prêt ?
           </h1>
-          <p class="mb-2 text-2xl font-bold tracking-tight text-white">15/20</p>
         </div>
         <div
           class="
@@ -53,6 +58,7 @@
         <br />
         <div class="group__button">
           <button
+            @click="startChallenge"
             type="email"
             name="email"
             id="email"
@@ -74,10 +80,15 @@
           </button>
           <br />
           <div class="card__footer rounded-lg">
-            <h1 class="text-xl text-center lg:text-2xl">Score: {{score}}/20</h1>
+            <h1 class="text-xl text-center lg:text-2xl">
+              Score: {{ score }}/20
+            </h1>
           </div>
           <br />
-          <div class="border border-gray-200" v-html="description"></div>
+          <div
+            class="border border-gray-200 text-white p-2"
+            v-html="description"
+          ></div>
         </div>
       </div>
     </div>
@@ -97,12 +108,21 @@ export default {
       required: false,
       default: "amet ipsum dolore.",
     },
+    error: {
+      type: String,
+      required: false,
+      default: null,
+    },
   },
   data: function () {
     return {
       isOpen: false,
-     
     };
+  },
+  methods: {
+    startChallenge: function () {
+      this.$emit("challenge");
+    },
   },
 };
 </script>
@@ -125,9 +145,9 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@media(max-width : 767px){
-  .center-content{
-    width : fit-content !important;
+@media (max-width: 767px) {
+  .center-content {
+    width: fit-content !important;
   }
 }
 </style>

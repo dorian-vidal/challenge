@@ -8,21 +8,12 @@
       Requête reussie !
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
-     {{error}}
+      {{ error }}
     </div>
     <div class="flex justify-center content-center">
       <div
         aria-disabled="false"
-        class="
-          center-content
-          card__section
-          p-6
-          bg-white
-          border border-gray-200
-          rounded-lg
-          shadow
-          dark:bg-gray-800 dark:border-gray-700
-        "
+        class="center-content card__section p-6 bg-white rounded-lg shadow"
       >
         <h1 class="text-2xl font-bold text-white mb-2">
           Configurez l'accès au serveur
@@ -206,20 +197,20 @@ export default {
         .then((response) => {
           this.success = true;
           this.error = false;
-          this.$router.push('/challenge')
+          this.$router.push("/challenge");
           console.log("Requête POST réussie", response);
         })
         .catch((error) => {
           this.success = false;
-          if(typeof error.response.data.message === 'string') {
+          if (typeof error.response.data.message === "string") {
             error.response.data.message = [error.response.data.message];
           }
           this.error = error.response.data.message[0];
-          if(this.error === 'INVALID_HOST'){
-            this.error = "Le host n'est pas valide "
+          if (this.error === "INVALID_HOST") {
+            this.error = "Le host n'est pas valide ";
           }
-          if(this.error === 'INVALID_USERNAME'){
-            this.error = "Le user n'est pas valide "
+          if (this.error === "INVALID_USERNAME") {
+            this.error = "Le user n'est pas valide ";
           }
           console.error("Erreur lors de la requête POST", error);
         });
@@ -243,9 +234,9 @@ export default {
   width: 800px;
   transform: translate(-50%, -50%);
 }
-@media(max-width : 767px){
-  .center-content{
-    width : fit-content !important;
+@media (max-width: 767px) {
+  .center-content {
+    width: fit-content !important;
   }
 }
 </style>

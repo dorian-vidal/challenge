@@ -8,27 +8,15 @@
       Inscription validée
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
-      {{ error }}
+      {{ error_msg }}
     </div>
     <div class="flex justify-center content-center">
-      <div
-        class="
-          center-content
-          card__section
-          p-6
-          bg-white
-          border border-gray-200
-          rounded-lg
-          shadow
-          dark:bg-gray-800 dark:border-gray-700
-        "
-      >
+      <div class="center-content card__section p-6 bg-white rounded-lg shadow">
         <h1 class="text-2xl font-bold text-white mb-3">Consignes</h1>
         <p class="text-white mb-3">Bienvenue sur le challenge unix shell</p>
         <h1 class="text-2xl font-bold text-white">Coordonnées</h1>
         <p class="text-white mb-3">Merci de renseigner vos coordonées ici.</p>
         <div>
-
           <input
             type="text"
             name="first_name"
@@ -47,7 +35,6 @@
               dark:text-white
             "
             placeholder="Prénom"
-            required
           />
           <input
             type="text"
@@ -66,14 +53,12 @@
               dark:text-white
             "
             placeholder="Nom"
-            required
           />
         </div>
         <br />
         <div class="">
           <button
             href="#"
-            :disabled="disabledButtonSend"
             @click="sendForm"
             class="
               inline-flex
@@ -119,22 +104,17 @@ export default {
       isOpen: false,
       success: false,
       error: false,
+      error_msg: null,
     };
   },
-  computed: {
-    disabledButtonSend() {
-      return this.user.first_name.length &&
-        this.user.last_name.length > 0
-        ? false
-        : true;
-    },
-  },
+  computed: {},
   methods: {
     sendForm() {
       const formData = {
         email: this.$route.query.email,
         first_name: this.user.first_name,
         last_name: this.user.last_name,
+        promo_slug: this.$route.query["promo-slug"],
       };
       console.log(formData);
       axios
@@ -150,13 +130,21 @@ export default {
           this.success = true;
           this.error = false;
           console.log("Requête POST réussie", response);
-          this.$router.push(`/me?token=${response.data.token}`)
-
+          this.$router.push(`/me?token=${response.data.token}`);
         })
         .catch((error) => {
           this.success = false;
           this.error = true;
-          console.error("Erreur lors de la requête POST", error);
+          this.error_msg = "Une erreur est survenue.";
+          if (error.response.data.message[0] === "INVALID_FIRST_NAME") {
+            this.error_msg = "Votre prénom n'est pas valide.";
+          }
+          if (error.response.data.message[0] === "INVALID_LAST_NAME") {
+            this.error_msg = "Votre nom n'est pas valide.";
+          }
+          if (error.response.data.message === "INVALID_PROMO_SLUG") {
+            this.error_msg = "La promo donnée n'existe pas.";
+          }
         });
     },
   },
@@ -171,9 +159,9 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
-@media(max-width : 767px){
-  .center-content{
-    width : fit-content !important;
+@media (max-width: 767px) {
+  .center-content {
+    width: fit-content !important;
   }
 }
 </style>

@@ -1,22 +1,15 @@
 <template>
   <div class="flex justify-center content-center">
-    <div v-if="success" class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg">
+    <div
+      v-if="success"
+      class="mt-3 mb-3 p-3 bg-green-500 text-white rounded-lg"
+    >
       E mail envoyé avec succes !
     </div>
     <div v-if="error" class="mt-3 mb-3 p-3 bg-red-500 text-white rounded-lg">
-      Erreur lors de l'envoi de l'e-mail.
+      {{ error_msg }}
     </div>
-    <div
-      class="center-content
-        card__section
-        p-6
-        bg-white
-        border border-gray-200
-        rounded-lg
-        shadow
-        dark:bg-gray-800 dark:border-gray-700
-      "
-    >
+    <div class="center-content card__section p-6 bg-white rounded-lg shadow">
       <div
         class="
           mb-2
@@ -36,9 +29,11 @@
           <input
             type="email"
             name="email"
+            form.email
             id="email"
             v-model="form.email"
-            class="mt-3
+            class="
+              mt-3
               bg-gray-50
               border border-gray-300
               text-gray-900 text-sm
@@ -107,34 +102,37 @@ export default {
       showModal: false,
       success: false,
       error: false,
+      error_msg: null,
       response: "",
-
-      form: {
-        name: "",
-        lastname: "",
-        phone: "",
-        mail: "",
-        profil: "",
-        text: "",
-      },
+      form: { email: null },
     };
   },
   methods: {
     sendEmail() {
-      const email = document.getElementById('email').value;
-
-      axios.post("https://mt4challenge.onrender.com/auth/login", this.form )
+      const formData = {
+        email: this.form.email,
+        promo_slug: this.$route.query.promo_slug,
+      };
+      axios
+        .post("https://mt4challenge.onrender.com/auth/login", formData)
         .then((response) => {
           this.success = true;
           this.error = false;
-          console.log(response)
+          console.log(response);
         })
         .catch((error) => {
           this.success = false;
           this.error = true;
+          this.error_msg = "Votre email n'est pas autorisé.";
+          if (error.response.data.message[0] === "INVALID_EMAIL") {
+            this.error_msg = "Votre email n'est pas valide.";
+          }
+          if (error.response.data.message[0] === "INVALID_PROMO_SLUG") {
+            this.error_msg = "La promo donnée n'est pas valide.";
+          }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -142,16 +140,16 @@ export default {
 .card__section {
   background-color: #32325a !important;
 }
-.center-content{
+.center-content {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
-@media(max-width : 767px){
-  .center-content{
-    width : fit-content !important;
+@media (max-width: 767px) {
+  .center-content {
+    width: fit-content !important;
   }
 }
 </style>

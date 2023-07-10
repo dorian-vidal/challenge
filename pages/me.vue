@@ -1,6 +1,10 @@
 <template>
   <div class="" id="page-home">
-    <strate-instance :user="me" :token="token" @update-user-data="updateUserData"/>
+    <strate-instance
+      :user="me"
+      :token="token"
+      @update-user-data="updateUserData"
+    />
   </div>
 </template>
 
@@ -11,11 +15,11 @@ export default {
 
   data() {
     return {
-      token : this.$route.query.token,
-      me : {
+      token: this.$route.query.token,
+      me: {
         sshPublicKey: "",
         host: "",
-        username: ""
+        username: "",
       },
     };
   },
@@ -23,33 +27,35 @@ export default {
     return {};
   },
 
-  mounted(){
-    this.authMe()   
+  mounted() {
+    this.authMe();
   },
 
   methods: {
-    authMe(){
-      this.$cookies.set('cookie-token', this.token)
- 
-      axios.get('https://mt4challenge.onrender.com/auth/me', {
+    authMe() {
+      this.$cookies.set("cookie-token", this.token);
+
+      axios
+        .get("https://mt4challenge.onrender.com/auth/me", {
           headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${this.$cookies.get('cookie-token')}`,
+            Accept: "application/json",
+            Authorization: `Bearer ${this.$cookies.get("cookie-token")}`,
           },
         })
         .then((response) => {
+          if (response.data.challenge_to_do) {
+            this.$router.push("/challenge");
+          }
           this.me.sshPublicKey = response.data.ssh_public_key_to_add;
-          console.log(this.me) 
         })
         .catch((error) => {
-          console.error('Error fetching SSH key:', error);
+          console.error("Error fetching SSH key:", error);
         });
     },
 
     updateUserData(newData) {
       this.me = newData;
-    }
-
+    },
   },
 };
 </script>
