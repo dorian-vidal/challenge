@@ -34,7 +34,6 @@ export default {
     },
     _onResize() {
       this.$device._onResize(); // Update value
-      this.setScreen();
       this.$eventHub.$emit("onResize");
     },
     _onUpdate() {
@@ -48,21 +47,6 @@ export default {
     _onScroll() {
       this.$device._onScroll(); // Update value
       this.$eventHub.$emit("onScroll", this.$device.scroll);
-    },
-
-    setScreen() {
-      const bpValues = Object.values(this.config.bp);
-      const bpKeys = Object.keys(this.config.bp);
-      let screen = "desktop";
-      if (bpValues.length) {
-        for (let i = 0; i < bpValues.length; i++) {
-          if (this.$device.width <= bpValues[i]) {
-            screen = bpKeys[i];
-            break;
-          }
-        }
-      }
-      this.$store.dispatch("global/loadScreen", screen);
     },
   },
   watch: {
