@@ -5,61 +5,14 @@
       'is-fixed': isFixed,
     }"
   >
-    <div class="container relative h-full py-6 lg:py-8 c-header__container">
-      <div class="min-h-full c-header__row">
-        <div class="flex items-center lg:justify-between">
-          <div
-            class="flex-1 lg:hidden c-header__burger"
-            @click="openMenu"
-          ></div>
-          <div class="flex flex-auto c-header__logo">
-            <h1
-              class="
-                flex
-                py-1
-                mx-6
-                text-xl
-                font-semibold
-                text-white
-                transition-colors
-                md:text-4xl
-                lg:text-md
-              "
-            >
-              challenge
-            </h1>
-          </div>
-          <div
-            class="
-              justify-center
-              transition-colors
-              c-header__container
-              l-nav__item
-            "
-          >
-            <a href="#"><h2
-              class="
-                flex
-                py-1
-                mx-6
-                text-xl
-                font-semibold
-                text-white
-                transition-colors
-                md:text-4xl
-                lg:text-md
-                t-link
-              "
-              @click="handleTitleClick"
-
-            >
-              {{ title }}
-            </h2>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h3 class="text-lg font-semibold text-white transition-colors t-link">
+      Shell challenge
+    </h3>
+    <a
+      class="text-lg font-semibold text-white transition-colors t-link"
+      @click="handleTitleClick"
+      >{{ title }}
+    </a>
   </header>
 </template>
 
@@ -69,6 +22,16 @@ import { removeCookie } from "cookie-universal-nuxt";
 
 export default {
   name: "Header",
+  props: {
+    title: {
+      type: String,
+      required: false,
+    },
+    value: {
+      type: String,
+      required: false,
+    },
+  },
   data: function () {
     return {
       isFixed: false,
@@ -89,17 +52,14 @@ export default {
       },
     };
   },
-  props: {
-    title: {
-      type: String,
-      required: false,
-    },
-    value: {
-      type: String,
-      required: false,
+  computed: {},
+  watch: {
+    $route() {
+      this.$nextTick(() => {
+        this.onScroll(this.$device.scroll);
+      });
     },
   },
-  computed: {},
   mounted() {
     this.bindEvents();
     this.$nextTick(() => {
@@ -115,7 +75,7 @@ export default {
   },
   methods: {
     handleTitleClick() {
-      this.$cookies.remove('cookie-token')
+      this.$cookies.remove("cookie-token");
       this.$router.push("/");
     },
 
@@ -187,18 +147,21 @@ export default {
         });
     },
   },
-  watch: {
-    $route() {
-      this.$nextTick(() => {
-        this.onScroll(this.$device.scroll);
-      });
-    },
-  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  padding: 20px 5%;
+}
 .c-header {
   background-color: $background;
+}
+a {
+  cursor: pointer;
+  text-decoration: underline;
 }
 </style>
