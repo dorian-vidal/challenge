@@ -84,7 +84,7 @@ export default {
       };
       console.log(formData);
       axios
-        .post("https://mt4-challenge.onrender.com/auth/register", formData, {
+        .post("https://mt4challenge.onrender.com/auth/register", formData, {
           headers: {
             Accept: "application/json",
           },

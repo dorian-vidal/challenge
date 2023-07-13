@@ -77,7 +77,7 @@ export default {
         promo_slug: this.$route.query.promo_slug,
       };
       axios
-        .post("https://mt4-challenge.onrender.com/auth/login", formData)
+        .post("https://mt4challenge.onrender.com/auth/login", formData)
         .then((response) => {
           this.success = true;
           this.error = false;

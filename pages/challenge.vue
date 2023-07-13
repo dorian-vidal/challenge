@@ -35,7 +35,7 @@ export default {
   methods: {
     fetchChallengeData() {
       axios
-        .get("https://mt4-challenge.onrender.com/auth/me", {
+        .get("https://mt4challenge.onrender.com/auth/me", {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -52,7 +52,7 @@ export default {
       console.log(this.$cookies.get("cookie-token"));
       axios
         .post(
-          "https://mt4-challenge.onrender.com/challenge/run-challenges",
+          "https://mt4challenge.onrender.com/challenge/run-challenges",
           null,
           {
             headers: {
