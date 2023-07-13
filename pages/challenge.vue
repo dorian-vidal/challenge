@@ -77,6 +77,9 @@ export default {
         .catch((error) => {
           this.success = false;
           this.error = true;
+          if (error.response.data.message === "CHALLENGE_DISABLED") {
+            this.error_msg = "Le challenge est désactivé.";
+          }
         });
     },
   },

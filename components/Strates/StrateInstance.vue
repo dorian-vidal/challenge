@@ -212,6 +212,9 @@ export default {
           if (this.error === "INVALID_USERNAME") {
             this.error = "Le user n'est pas valide ";
           }
+          if (error.response.data.message === "CHALLENGE_DISABLED") {
+            this.error_msg = "Le challenge est désactivé.";
+          }
           console.error("Erreur lors de la requête POST", error);
         });
     },

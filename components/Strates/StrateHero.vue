@@ -145,6 +145,9 @@ export default {
           if (error.response.data.message === "INVALID_PROMO_SLUG") {
             this.error_msg = "La promo donnée n'existe pas.";
           }
+          if (error.response.data.message === "CHALLENGE_DISABLED") {
+            this.error_msg = "Le challenge est désactivé.";
+          }
         });
     },
   },
