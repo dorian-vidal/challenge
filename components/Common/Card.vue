@@ -11,16 +11,7 @@
     </div>
     <div class="center-content card__section p-6 bg-white rounded-lg shadow">
       <div
-        class="
-          mb-2
-          text-2xl
-          font-bold
-          tracking-tight
-          text-white
-          border-b-2 border-neutral-100
-          py-3
-          dark:border-neutral-600 dark:text-neutral-50
-        "
+        class="mb-2 text-2xl font-bold tracking-tight text-white border-b-2 border-neutral-100 py-3 dark:border-neutral-600 dark:text-neutral-50"
       >
         Connexion
       </div>
@@ -32,18 +23,7 @@
             form.email
             id="email"
             v-model="form.email"
-            class="
-              mt-3
-              bg-gray-50
-              border border-gray-300
-              text-gray-900 text-sm
-              rounded-lg
-              focus:ring-blue-500 focus:border-blue-500
-              block
-              w-full
-              p-2.5
-              dark:text-white
-            "
+            class="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:text-white"
             placeholder="name@company.com"
             required
           />
@@ -55,29 +35,12 @@
       </div>
 
       <div
-        class="
-          border-t-2 border-neutral-100
-          py-3
-          dark:border-neutral-600 dark:text-neutral-50
-        "
+        class="border-t-2 border-neutral-100 py-3 dark:border-neutral-600 dark:text-neutral-50"
       >
         <a
           @click="sendEmail()"
           href="#"
-          class="
-            inline-flex
-            items-center
-            px-3
-            py-2
-            text-sm
-            font-medium
-            text-center text-white
-            bg-blue-700
-            rounded-lg
-            hover:bg-blue-800
-            focus:ring-4 focus:outline-none focus:ring-blue-300
-            dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800
-          "
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           ENVOYEZ !
         </a>
@@ -114,7 +77,7 @@ export default {
         promo_slug: this.$route.query.promo_slug,
       };
       axios
-        .post("https://mt4challenge.onrender.com/auth/login", formData)
+        .post("https://mt4-challenge.onrender.com/auth/login", formData)
         .then((response) => {
           this.success = true;
           this.error = false;

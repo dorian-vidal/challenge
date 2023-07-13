@@ -1,6 +1,6 @@
 <template>
   <div class="" id="page-home">
-    <strate-hero :user="me"  @update-user-data="updateUserData"/>
+    <strate-hero :user="me" @update-user-data="updateUserData" />
   </div>
 </template>
 
@@ -10,10 +10,10 @@ export default {
 
   data() {
     return {
-      me : {
+      me: {
         first_name: "",
-        last_name: ""
-      }
+        last_name: "",
+      },
     };
   },
   head() {
@@ -22,7 +22,7 @@ export default {
   methods: {
     updateUserData(newData) {
       this.me = newData;
-    }
+    },
   },
 };
 </script>

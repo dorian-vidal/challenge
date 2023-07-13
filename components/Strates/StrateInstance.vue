@@ -134,7 +134,7 @@ export default {
       console.log(formData);
       axios
         .patch(
-          "https://mt4challenge.onrender.com/challenge/new-instance",
+          "https://mt4-challenge.onrender.com/challenge/new-instance",
           formData,
           {
             headers: {

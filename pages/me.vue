@@ -36,7 +36,7 @@ export default {
       this.$cookies.set("cookie-token", this.token);
 
       axios
-        .get("https://mt4challenge.onrender.com/auth/me", {
+        .get("https://mt4-challenge.onrender.com/auth/me", {
           headers: {
             Accept: "application/json",
             Authorization: `Bearer ${this.$cookies.get("cookie-token")}`,
